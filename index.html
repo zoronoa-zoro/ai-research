@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Research Lab · zoronoa-zoro</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/motion@11.18.2/dist/motion.js"></script>
+<style>
+:root{box-sizing:border-box;--bg:#07060f;--card:#10142b;--line:#2a3160;--ink:#e6e9f5;--mute:#8a94b8;--c1:#24c6dc;--c2:#b794ff;--c3:#ff6f61;--c4:#39d353;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f5fb;--card:#fff;--line:#d7dbef;--ink:#12142b;--mute:#5b6485}}
+:root[data-theme="dark"]{--bg:#07060f}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 17px/1.55 "Space Grotesk",system-ui,sans-serif;overflow-x:hidden}
+main{max-width:980px;margin:0 auto;padding:56px 20px 80px}
+h1{font-size:clamp(44px,10vw,104px);line-height:.95;margin:0 0 18px;font-weight:700;letter-spacing:-.03em}
+h1 span{display:inline-block;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--mute);max-width:52ch;margin:0 0 28px}
+.hud{display:flex;justify-content:space-between;color:var(--mute);font-size:14px;margin:0 2px 8px}
+.hud b{color:var(--c4)}
+canvas{display:block;width:100%;height:auto;border-radius:16px;background:#0d1117;border:1px solid var(--line);cursor:crosshair;touch-action:none}
+h2{font-size:28px;margin:72px 0 20px;letter-spacing:-.02em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;cursor:pointer;will-change:transform}
+.card svg{width:64px;height:64px;overflow:visible;margin-bottom:12px}
+.card h3{margin:0 0 6px;font-size:20px}.card p{margin:0;color:var(--mute);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.stat b{display:block;font-size:34px;letter-spacing:-.02em}.stat span{color:var(--mute);font-size:14px}
+a.btn{display:inline-block;margin-top:34px;padding:14px 22px;border-radius:999px;background:var(--c1);color:#04121a;font-weight:700;text-decoration:none}
+a.btn:focus-visible,.card:focus-visible{outline:3px solid var(--c2);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<h1 id="t"><span>AI research lab</span></h1>
+<p class="sub">Notes from testing AI tools, video generation, agents and LLM workflows. Move your mouse to fly the ship. Click or press space to fire.</p>
+<div class="hud"><span>Commits cleared: <b id="sc">0</b></span><span id="mode">autopilot</span></div>
+<canvas id="g" width="936" height="300" aria-label="Contribution invaders game"></canvas>
+
+<h2>Four tracks</h2>
+<div class="grid">
+<div class="card" tabindex="0" data-spin="90"><svg viewBox="-32 -32 64 64"><circle r="22" fill="none" stroke="#24c6dc" stroke-width="9" stroke-dasharray="8.6 8.6"/><circle r="16" fill="none" stroke="#24c6dc" stroke-width="5"/></svg><h3>AI tools</h3><p>Hands-on verdicts and what the paywall really hides.</p></div>
+<div class="card" tabindex="0" data-spin="0"><svg viewBox="-32 -32 64 64"><circle r="26" fill="none" stroke="#ff6f61" stroke-width="3"/><path d="M-9-15L17 0-9 15Z" fill="#ff6f61"/></svg><h3>Video gen</h3><p>Prompt anatomy, consistency tricks, full pipelines.</p></div>
+<div class="card" tabindex="0" data-spin="-180"><svg viewBox="-32 -32 64 64"><circle r="21" fill="none" stroke="#2a3160" stroke-dasharray="3 5"/><circle cx="21" r="6" fill="#b794ff"/><circle cx="-10.5" cy="18" r="6" fill="#b794ff"/><circle cx="-10.5" cy="-18" r="6" fill="#b794ff"/><circle r="8" fill="#39d353"/></svg><h3>Agents</h3><p>Tool use, MCP servers, and why loops go wrong.</p></div>
+<div class="card" tabindex="0" data-spin="0"><svg viewBox="-32 -32 64 64"><path d="M-26-20H26a5 5 0 015 5V10a5 5 0 01-5 5H-6L-20 27V15h-6a5 5 0 01-5-5V-15a5 5 0 015-5Z" fill="none" stroke="#39d353" stroke-width="3"/><circle cx="-12" r="3.5" fill="#39d353"/><circle r="3.5" fill="#39d353"/><circle cx="12" r="3.5" fill="#39d353"/></svg><h3>LLM workflows</h3><p>Chains, evals, routing and token budgets.</p></div>
+</div>
+
+<h2>Token burn report</h2>
+<div class="stats">
+<div class="stat"><b data-n="21">0</b><span>sessions</span></div>
+<div class="stat"><b data-n="2273">0</b><span>messages</span></div>
+<div class="stat"><b data-n="106.5" data-s="M">0</b><span>total tokens</span></div>
+<div class="stat"><b data-n="145" data-s="x">0</b><span>War and Peace</span></div>
+</div>
+<a class="btn" href="https://github.com/zoronoa-zoro/ai-research">Open the notes on GitHub</a>
+</main>
+<script>
+const M=window.Motion,RM=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const spring=(el,k,o)=>M&&!RM?M.animate(el,k,o||{type:"spring",stiffness:320,damping:14}):0;
+/* orchestrated load: headline springs in once */
+const h=document.querySelector("#t span");spring(h,{opacity:[0,1],y:[60,0],scale:[.9,1]},{type:"spring",stiffness:120,damping:12});
+/* reactive icons: hover and focus answer with a spring */
+document.querySelectorAll(".card").forEach(c=>{const i=c.querySelector("svg"),r=+c.dataset.spin;
+ const on=()=>{spring(c,{y:-8,scale:1.03});spring(i,{scale:1.25,rotate:r||12})};
+ const off=()=>{spring(c,{y:0,scale:1});spring(i,{scale:1,rotate:0})};
+ c.onpointerenter=on;c.onpointerleave=off;c.onfocus=on;c.onblur=off;
+ c.onpointerdown=()=>spring(i,{rotate:(r||12)+360,scale:1.4},{type:"spring",stiffness:90,damping:10})});
+/* count up when stats scroll into view */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+ const el=e.target,n=+el.dataset.n,s=el.dataset.s||"";
+ if(!M||RM){el.textContent=n.toLocaleString()+s;return}
+ M.animate(0,n,{duration:1.4,ease:"easeOut",onUpdate:v=>el.textContent=(n%1?v.toFixed(1):Math.round(v).toLocaleString())+s})}),{threshold:.6});
+document.querySelectorAll("[data-n]").forEach(e=>io.observe(e));
+/* contribution invaders */
+const cv=document.getElementById("g"),x=cv.getContext("2d"),W=cv.width,H=cv.height,S=18,CO=52,RO=7,P=["#161b22","#0e4429","#006d32","#26a641","#39d353"];
+let cells,bul=[],pts=[],px=W/2,sc=0,live=false,f=0;
+const reset=()=>{cells=[];for(let c=0;c<CO;c++)for(let r=0;r<RO;r++)cells.push({x:10+c*S,y:16+r*S,l:Math.random()<.78?1+(Math.random()*4|0):0})};reset();
+const fire=()=>bul.push({x:px,y:H-40});
+const pos=e=>{const b=cv.getBoundingClientRect();px=Math.max(14,Math.min(W-14,(e.clientX-b.left)/b.width*W));live=true;document.getElementById("mode").textContent="you're flying"};
+cv.onpointermove=pos;cv.onpointerdown=e=>{pos(e);fire()};
+addEventListener("keydown",e=>{if(e.code==="Space"&&live){e.preventDefault();fire()}});
+cv.onpointerleave=()=>{live=false;document.getElementById("mode").textContent="autopilot"};
+function tick(){f++;if(!live){px=W/2+Math.sin(f/70)*W*.42;if(f%14==0)fire()}
+ x.clearRect(0,0,W,H);
+ for(const c of cells){if(c.l<0)continue;x.fillStyle=P[c.l];x.beginPath();x.roundRect(c.x,c.y,15,15,3);x.fill()}
+ for(const b of bul){b.y-=9;for(const c of cells)if(c.l>=0&&c.l>0&&b.x>c.x&&b.x<c.x+15&&b.y>c.y&&b.y<c.y+15){
+   sc+=c.l;for(let i=0;i<8;i++)pts.push({x:c.x+7,y:c.y+7,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,a:1,k:P[c.l]});c.l=-1;b.y=-99;break}}
+ bul=bul.filter(b=>b.y>0);x.fillStyle="#ff6f61";for(const b of bul)x.fillRect(b.x-1.5,b.y,3,11);
+ for(const p of pts){p.x+=p.vx;p.y+=p.vy;p.a-=.04;x.globalAlpha=Math.max(p.a,0);x.fillStyle=p.k;x.fillRect(p.x,p.y,3,3)}x.globalAlpha=1;pts=pts.filter(p=>p.a>0);
+ x.fillStyle="#24c6dc";x.beginPath();x.moveTo(px,H-34);x.lineTo(px+14,H-12);x.lineTo(px+5,H-16);x.lineTo(px,H-9);x.lineTo(px-5,H-16);x.lineTo(px-14,H-12);x.fill();
+ document.getElementById("sc").textContent=sc;
+ if(cells.every(c=>c.l<=0))reset();
+ requestAnimationFrame(tick)}
+tick();
+</script>
+</body>
+</html>
