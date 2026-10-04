@@ -83,8 +83,3 @@ flowchart LR
 ---
 
 <div align="center">⭐ Star the repo · 🐛 Request a tool test · 🔀 Send your findings</div>
-3. Actions tab > "Contribution Games" > Run workflow (creates the `output` branch).
-4. Contribution graphs belong to a USER account. If zoronoa-zoro is an organization,
-   change github_user_name / USERNAME in the workflow to your personal username.
-5. Put your screenshots in /assets and uncomment the Token burn images.
-============================================================ -->
